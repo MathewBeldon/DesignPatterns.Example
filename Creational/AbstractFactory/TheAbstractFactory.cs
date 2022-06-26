@@ -1,89 +1,100 @@
 ﻿namespace AbstractFactory
 {
-    abstract class Product
+    abstract class CaseProduct
     {
-        public abstract string DoStuff(string stuff);
+        public abstract string ChangeCase(string input);
     }
 
-    class ConcreteProductToLowerCase : Product
+    abstract class ReplaceProduct
     {
-        public override string DoStuff(string stuff)
+        public abstract string ReplaceCharacter(string input);
+    }
+
+    class ConcreteProductToLowerCase : CaseProduct
+    {
+        public override string ChangeCase(string input)
         {
-            return stuff.ToLower();
+            return input.ToLower();
         }
     }
 
-    class ConcreteProductToUpperCase : Product
+    class ConcreteProductToUpperCase : CaseProduct
     {
-        public override string DoStuff(string stuff)
+        public override string ChangeCase(string input)
         {
-            return stuff.ToUpper();
+            return input.ToUpper();
         }
     }
 
-    class ConcreteProductSpaceToComma : Product
+    class ConcreteProductSpaceToComma : ReplaceProduct
     {
-        public override string DoStuff(string stuff)
+        public override string ReplaceCharacter(string input)
         {
-            return stuff.Replace(" ", ",");
+            return input.Replace(" ", ",");
         }
     }
 
-    class ConcreteProductSpaceToSemicolon : Product
+    class ConcreteProductSpaceToSemicolon : ReplaceProduct
     {
-        public override string DoStuff(string stuff)
+        public override string ReplaceCharacter(string input)
         {
-            return stuff.Replace(" ", ";");
+            return input.Replace(" ", ";");
         }
     }
 
     abstract class SuperFactory
     {
-        public abstract Product GetProduct(string productType);
+        public abstract CaseProduct CreateCaseProduct();
 
-        public static SuperFactory CreateConcreateFactory(string concreteType)
+        public abstract ReplaceProduct CreateReplaceProduct();
+
+    }
+
+    class LowerCaseCommaFactory : SuperFactory
+    {
+        public override CaseProduct CreateCaseProduct()
         {
-            switch (concreteType.ToLower())
-            {
-                case "case":
-                    return new ConcreateCreatorCaseFactory();
-                case "replace":
-                    return new ConcreateCreatorReplaceFactory();
-            }
+            return new ConcreteProductToLowerCase();
+        }
 
-            throw new NotSupportedException();
+        public override ReplaceProduct CreateReplaceProduct()
+        {
+            return new ConcreteProductSpaceToComma();
         }
     }
 
-    class ConcreateCreatorCaseFactory : SuperFactory
+    class UpperCaseSemicolonFactory : SuperFactory
     {
-        public override Product GetProduct(string toCase)
+        public override CaseProduct CreateCaseProduct()
         {
-            switch (toCase.ToLower())
-            {
-                case "lower":
-                    return new ConcreteProductToLowerCase();
-                case "upper":
-                    return new ConcreteProductToUpperCase();
-            }
+            return new ConcreteProductToUpperCase();
+        }
 
-            throw new NotSupportedException();
+        public override ReplaceProduct CreateReplaceProduct()
+        {
+            return new ConcreteProductSpaceToSemicolon();
         }
     }
 
-    class ConcreateCreatorReplaceFactory : SuperFactory
+    class Client
     {
-        public override Product GetProduct(string toReplace)
-        {
-            switch (toReplace.ToLower())
-            {
-                case "comma":
-                    return new ConcreteProductSpaceToComma();
-                case "semicolon":
-                    return new ConcreteProductSpaceToSemicolon();
-            }
+        private readonly CaseProduct _caseProduct;
+        private readonly ReplaceProduct _replaceProduct;
 
-            throw new NotSupportedException();
+        public Client(SuperFactory factory)
+        {
+            _caseProduct = factory.CreateCaseProduct();
+            _replaceProduct = factory.CreateReplaceProduct();
+        }
+
+        public string ChangeCase(string input)
+        {
+            return _caseProduct.ChangeCase(input);
+        }
+
+        public string ReplaceCharacter(string input)
+        {
+            return _replaceProduct.ReplaceCharacter(input);
         }
     }
 }

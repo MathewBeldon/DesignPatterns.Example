@@ -4,20 +4,18 @@
     {
         static void Main()
         {
-            var factoryForCase = SuperFactory.CreateConcreateFactory("case");
-            var productForUpper = factoryForCase.GetProduct("upper");
-            var productForLower = factoryForCase.GetProduct("lower");
+            SuperFactory lowerCaseCommaFactory = new LowerCaseCommaFactory();
+            Client client = new Client(lowerCaseCommaFactory);
+            
+            Console.WriteLine(client.ChangeCase("TO LOWER"));
+            Console.WriteLine(client.ReplaceCharacter("Replace With Comma"));
 
-            Console.WriteLine(productForLower.DoStuff("TO LOWER"));
-            Console.WriteLine(productForUpper.DoStuff("to upper"));
 
+            SuperFactory upperCaseSemicolonFactory = new UpperCaseSemicolonFactory();
+            client = new Client(upperCaseSemicolonFactory);
 
-            var factoryForReplace = SuperFactory.CreateConcreateFactory("replace");
-            var productForComma = factoryForReplace.GetProduct("comma");
-            var productForSemicolon = factoryForReplace.GetProduct("semicolon");
-
-            Console.WriteLine(productForComma.DoStuff("I want commas"));
-            Console.WriteLine(productForSemicolon.DoStuff("I want semicolons"));
+            Console.WriteLine(client.ChangeCase("to upper"));
+            Console.WriteLine(client.ReplaceCharacter("Replace With Semicolon"));
 
             Console.ReadKey();
         }
