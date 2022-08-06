@@ -37,6 +37,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Behavioral", "Behavioral", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChainOfResponsibility", "Behavioral\ChainOfResponsibility\ChainOfResponsibility.csproj", "{FA09C9CE-CC62-4DA2-ABCE-A9A91BBAC293}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Command", "Behavioral\Command\Command.csproj", "{A42A58D9-0549-4FEE-A0AF-09C9527DB034}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{FA09C9CE-CC62-4DA2-ABCE-A9A91BBAC293}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA09C9CE-CC62-4DA2-ABCE-A9A91BBAC293}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA09C9CE-CC62-4DA2-ABCE-A9A91BBAC293}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A42A58D9-0549-4FEE-A0AF-09C9527DB034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A42A58D9-0549-4FEE-A0AF-09C9527DB034}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A42A58D9-0549-4FEE-A0AF-09C9527DB034}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A42A58D9-0549-4FEE-A0AF-09C9527DB034}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,6 +124,7 @@ Global
 		{6051BED6-B8E9-4543-9E65-01A7252A59AE} = {F3011997-7CA9-45E0-BD94-0BCF8AE792D1}
 		{2A4BFC9B-CDFB-4F73-A264-79D25E9C3DBC} = {F3011997-7CA9-45E0-BD94-0BCF8AE792D1}
 		{FA09C9CE-CC62-4DA2-ABCE-A9A91BBAC293} = {2A2658CC-717E-4599-932F-A92FAC1D1BC6}
+		{A42A58D9-0549-4FEE-A0AF-09C9527DB034} = {2A2658CC-717E-4599-932F-A92FAC1D1BC6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D0F84B50-64B5-4B7B-B01B-F50CA71AA73D}
